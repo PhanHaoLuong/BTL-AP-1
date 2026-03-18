@@ -52,6 +52,12 @@ public abstract class Instrument {
     public String toString() {
         // TODO
         // throw new UnsupportedOperationException("TODO");
-        return this.toString();
+        return String.format(
+            "%s[symbol=%s, price=%.2f, risk=%.1f]",
+            this.getClass().getSimpleName(),
+            this.getSymbol(),
+            this.getCurrentPriceValue(),
+            this.riskScore()
+        );
     }
 }
