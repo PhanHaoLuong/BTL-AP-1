@@ -26,22 +26,26 @@ public abstract class Instrument {
 
     public String getSymbol() {
         // TODO
-        throw new UnsupportedOperationException("TODO");
+        // throw new UnsupportedOperationException("TODO");
+        return this.symbol;
     }
 
     public String getName() {
         // TODO
-        throw new UnsupportedOperationException("TODO");
+        // throw new UnsupportedOperationException("TODO");
+        return this.name;
     }
 
     public double getCurrentPriceValue() {
         // TODO
-        throw new UnsupportedOperationException("TODO");
+        // throw new UnsupportedOperationException("TODO");
+        return this.currentPrice;
     }
 
     public LocalDateTime getLastUpdated() {
         // TODO
-        throw new UnsupportedOperationException("TODO");
+        // throw new UnsupportedOperationException("TODO");
+        return this.lastUpdated;
     }
 
     @Override

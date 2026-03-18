@@ -28,11 +28,13 @@ public class Stock extends Instrument {
     
     public double getMarketCap() {
         // TODO
-        throw new UnsupportedOperationException("TODO");
+        // throw new UnsupportedOperationException("TODO");
+        return this.marketCap;
     }
 
     public String getSector() {
         // TODO
-        throw new UnsupportedOperationException("TODO");
+        // throw new UnsupportedOperationException("TODO");
+        return this.sector;
     }
 }
