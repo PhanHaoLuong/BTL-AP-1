@@ -1,12 +1,14 @@
 public interface Tradeable {
-    String getSymbol();
+	String getSymbol();
 
-    double getCurrentPriceValue();
+	double getCurrentPriceValue();
 
-    boolean isAvailableForTrading();
+	boolean isAvailableForTrading();
 
-    default String getTradingInfo() {
-        // TODO
-        throw new UnsupportedOperationException("TODO");
-    }
+	default String getTradingInfo() {
+		// TODO
+		// throw new UnsupportedOperationException("TODO");
+		return "Tradeable: " + this.getSymbol() + " at " + "$" + this.getCurrentPriceValue() + " ("
+				+ this.isAvailableForTrading() + ")";
+	}
 }
