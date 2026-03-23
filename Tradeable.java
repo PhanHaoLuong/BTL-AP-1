@@ -9,6 +9,6 @@ public interface Tradeable {
 		// TODO
 		// throw new UnsupportedOperationException("TODO");
 		return "Tradeable: " + this.getSymbol() + " at " + "$" + this.getCurrentPriceValue() + " ("
-				+ this.isAvailableForTrading() + ")";
+				+ (this.isAvailableForTrading() ? "Available" : "Unavailable") + ")";
 	}
 }
