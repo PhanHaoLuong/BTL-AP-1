@@ -19,6 +19,7 @@ public class Portfolio implements Observable<String> {
 		// TODO
 		// throw new UnsupportedOperationException("TODO");
 		Position p = new Position(inst, qty, costBasis);
+		this.positions.add(p);
 
 		String noti = "ADDED: " + inst.getSymbol() + " x" + qty;
 		this.notifyObservers(noti);
@@ -30,10 +31,11 @@ public class Portfolio implements Observable<String> {
 		for (Position p : this.positions) {
 			if (p.getInstrument().getSymbol() == symbol)
 				this.positions.remove(p);
+			String noti = "REMOVED: " + symbol;
+			this.notifyObservers(noti);
 		}
 
-		String noti = "REMOVED: " + symbol;
-		this.notifyObservers(noti);
+		throw new PositionNotFoundException("");
 	}
 
 	public double totalMarketValue() {
@@ -62,7 +64,13 @@ public class Portfolio implements Observable<String> {
 
 	public Position getPosition(String symbol) throws PositionNotFoundException {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		for (Position p : this.positions) {
+			if (p.getInstrument().getSymbol() == symbol)
+				return p;
+		}
+
+		throw new PositionNotFoundException("");
 	}
 
 	public List<Position> getPositionsSortedByValue() {
@@ -105,11 +113,13 @@ public class Portfolio implements Observable<String> {
 
 	public String getPortfolioId() {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		return this.portfolioId;
 	}
 
 	public String getOwnerName() {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		return this.ownerName;
 	}
 }
