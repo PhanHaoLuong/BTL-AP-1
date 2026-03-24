@@ -1,4 +1,4 @@
-public class RiskAdjustedPricingStrategy extends PricingStrategy {
+public class RiskAdjustedPricingStrategy implements PricingStrategy {
 	@Override
 	public double calculateFairValue(Instrument instrument) {
 		return instrument.getCurrentPriceValue() * (1 + 0.01 * instrument.riskScore());
@@ -6,6 +6,6 @@ public class RiskAdjustedPricingStrategy extends PricingStrategy {
 
 	@Override
 	public String strategyName() {
-		return "RiskAdjustedPricingStrategy ";
+		return "RiskAdjustedPricingStrategy";
 	}
 }

@@ -50,6 +50,11 @@ public class Position {
 	public String toString() {
 		// TODO
 		// throw new UnsupportedOperationException("TODO");
-		return this.instrument.getSymbol() + " x" + this.quantity;
+		return String.format(
+				"Position[symbol=%s, qty=%s, value=%s, pnl=%s",
+				this.getInstrument().getSymbol(),
+				this.quantity,
+				this.marketValue(),
+				this.unrealizedPnL());
 	}
 }

@@ -8,7 +8,10 @@ public interface Tradeable {
 	default String getTradingInfo() {
 		// TODO
 		// throw new UnsupportedOperationException("TODO");
-		return "Tradeable: " + this.getSymbol() + " at " + "$" + this.getCurrentPriceValue() + " ("
-				+ (this.isAvailableForTrading() ? "Available" : "Unavailable") + ")";
+		return String.format(
+				"Tradeable: %s @ %.2f [%s]",
+				this.getSymbol(),
+				this.getCurrentPriceValue(),
+				(this.isAvailableForTrading() ? "Available" : "Unavailable"));
 	}
 }
