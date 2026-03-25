@@ -20,4 +20,12 @@ public class TaxReportVisitor implements InstrumentVisitor {
 	public void visit(Option option) {
 		this.totalTaxLiability += option.getCurrentPriceValue() * 0.2;
 	}
+
+	public double getTotalTaxLiability() {
+		return this.totalTaxLiability;
+	}
+
+	public String getReport() {
+		return String.format("TAX: %s", this.totalTaxLiability);
+	}
 }
