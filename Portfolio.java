@@ -35,7 +35,7 @@ public class Portfolio implements Observable<String> {
 			this.notifyObservers(noti);
 		}
 
-		throw new PositionNotFoundException("");
+		throw new PositionNotFoundException(String.format("Position not found: %s", symbol));
 	}
 
 	public double totalMarketValue() {
@@ -70,22 +70,50 @@ public class Portfolio implements Observable<String> {
 				return p;
 		}
 
-		throw new PositionNotFoundException("");
+		throw new PositionNotFoundException(String.format("Position not found: %s", symbol));
 	}
 
 	public List<Position> getPositionsSortedByValue() {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		List<Position> sPositions = new ArrayList<>(positions);
+		sPositions.sort((Position a, Position b) -> Double.compare(b.marketValue(), a.marketValue()));
+		return sPositions;
 	}
 
 	public Map<String, Double> allocationByAssetClass() {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		double totalValue = 0.0;
+		for (Position p : this.positions) {
+			totalValue += p.getInstrument().getCurrentPriceValue();
+		}
+
+		Map<String, Double> allocation = new HashMap<>();
+		if (totalValue == 0.0)
+			return allocation;
+		for (Position p : this.positions) {
+			String asset = p.getInstrument().assetClass();
+			double currentValue = allocation.getOrDefault(asset, 0.0);
+			allocation.put(asset, currentValue + p.getInstrument().getCurrentPriceValue());
+		}
+
+		for (Map.Entry<String, Double> e : allocation.entrySet()) {
+			double percentage = (e.getValue() / totalValue) * 100;
+			allocation.put(e.getKey(), percentage);
+		}
+
+		return allocation;
 	}
 
 	public void revalueAll(PricingStrategy strategy) {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		for (Position p : this.positions) {
+			Instrument i = p.getInstrument();
+			i.updatePrice(strategy.calculateFairValue(i));
+		}
+		notifyObservers(String.format("REVALUED: %s", strategy.strategyName()));
 	}
 
 	@Override

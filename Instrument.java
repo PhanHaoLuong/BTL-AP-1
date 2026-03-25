@@ -1,7 +1,7 @@
 import java.awt.List;
 import java.time.LocalDateTime;
 
-public abstract class Instrument implements Tradeable, Priceable, InstrumentVisitor {
+public abstract class Instrument implements Tradeable, Priceable {
 	private final String symbol;
 	private String name;
 	private double currentPrice;
@@ -24,6 +24,9 @@ public abstract class Instrument implements Tradeable, Priceable, InstrumentVisi
 		// throw new UnsupportedOperationException("TODO");
 		if (newPrice < 0)
 			throw new IllegalArgumentException();
+		else {
+			this.currentPrice = newPrice;
+		}
 	}
 
 	public String getSymbol() {
