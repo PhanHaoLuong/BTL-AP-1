@@ -33,6 +33,7 @@ public class Portfolio implements Observable<String> {
 				this.positions.remove(p);
 			String noti = "REMOVED: " + symbol;
 			this.notifyObservers(noti);
+			return;
 		}
 
 		throw new PositionNotFoundException(String.format("Position not found: %s", symbol));
