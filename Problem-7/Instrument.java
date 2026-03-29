@@ -81,6 +81,4 @@ public abstract class Instrument implements Tradeable, Priceable {
 	public boolean isAvailableForTrading() {
 		return true;
 	}
-
-	public abstract void accept(InstrumentVisitor instrumentVisitor);
 }
