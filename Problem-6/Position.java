@@ -25,7 +25,9 @@ public class Position {
 
 	public void addQuantity(int qty, double costBasis) {
 		// TODO
-		throw new UnsupportedOperationException("TODO");
+		// throw new UnsupportedOperationException("TODO");
+		this.averageCostBasis = (this.averageCostBasis * this.quantity + costBasis * qty) / (this.quantity + qty);
+		this.quantity += qty;
 	}
 
 	public Instrument getInstrument() {
