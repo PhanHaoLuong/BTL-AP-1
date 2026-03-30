@@ -2,7 +2,8 @@ import java.util.*;
 
 public class RiskAnalyzer<T extends Instrument> {
 	private final List<T> instruments = new ArrayList<>();
-	private double avgRisk = 0;
+	private double totalRisk = 0;
+	private int count = 0;
 	private T highestR = null;
 	private T lowestR = null;
 
@@ -10,12 +11,8 @@ public class RiskAnalyzer<T extends Instrument> {
 		// TODO
 		// throw new UnsupportedOperationException("TODO");
 		this.instruments.add(instrument);
-
-		if (avgRisk == 0)
-			avgRisk = instrument.riskScore();
-		else {
-			avgRisk = (avgRisk + instrument.riskScore()) / 2;
-		}
+		totalRisk += instrument.riskScore();
+		count++;
 
 		if (highestR == null)
 			highestR = instrument;
@@ -35,7 +32,7 @@ public class RiskAnalyzer<T extends Instrument> {
 	public double averageRisk() {
 		// TODO
 		// throw new UnsupportedOperationException("TODO");
-		return avgRisk;
+		return count == 0 ? 0 : totalRisk / count;
 	}
 
 	public T highestRisk() {
